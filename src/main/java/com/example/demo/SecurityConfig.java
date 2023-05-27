@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .password(passwordEncoder().encode("123456"))
                 .roles("USER")
                 .build();
-        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+        System.out.println(passwordEncoder().encode("123456"));
         return new InMemoryUserDetailsManager(user);
     }
 }
