@@ -48,4 +48,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String sql = "INSERT INTO user(name, password, authority) VALUES(?, ?, ?)";
         jdbcTemplate.update(sql, username, passwordEncoder().encode(password), authority);
     }
+
+    public boolean isExistUser(String username) {
+        String sql = "SELECT COUNT(*) FROM user WHERE name = ?";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, new Object[] { username });
+        if (count == 0) {
+            return false;
+        }
+        return true;
+    }
 }
